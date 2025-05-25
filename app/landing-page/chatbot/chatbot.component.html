@@ -1,0 +1,11 @@
+<div class="chatbot-window">
+  <div class="chatbot-header">AI Chatbot</div>
+  <div class="chatbot-messages">
+    <div *ngFor="let msg of messages" [ngClass]="msg.from">{{ msg.text }}</div>
+    <div *ngIf="loading" class="bot">Thinking...</div>
+  </div>
+  <form (ngSubmit)="sendMessage()" class="chatbot-input-form">
+    <input [(ngModel)]="userInput" name="userInput" class="chatbot-input" placeholder="Type your question..." autocomplete="off" required />
+    <button type="submit" class="send-btn">Send</button>
+  </form>
+</div>

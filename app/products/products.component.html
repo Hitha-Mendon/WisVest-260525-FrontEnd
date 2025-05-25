@@ -1,0 +1,73 @@
+<div class="products-page">
+  <nav class="custom-navbar">
+    <div class="navbar-container">
+      <a class="navbar-brand">
+        <img [src]="logoPath" alt="WisVest Logo" class="logo-img" />
+        <h2>{{ 'PRODUCTS.TITLE' | translate }}</h2>
+      </a>
+      <div class="navbar-center">
+        <img [src]="workPath" alt="Work" class="work-img" />
+      </div>
+      <div class="navbar-buttons">
+        <button class="home-button" (click)="home()">{{ 'PRODUCTS.HOME_BUTTON' | translate }}</button>
+        <a routerLink="/input" class="input-button" (click)="input()">
+          {{ 'PORTFOLIO.INPUT_BUTTON' | translate }}
+        </a>
+        <a routerLink="/login" class="logout-btn" (click)="logout()">
+          <i class="fas fa-sign-out-alt"></i> 
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content-container">
+    <h2 class="page-title">{{ 'PRODUCTS.PAGE_TITLE' | translate }}</h2>
+
+    <div class="search-bar">
+      <input
+        type="text"
+        class="search-input"
+        [placeholder]="'PRODUCTS.SEARCH_PLACEHOLDER' | translate"
+        [(ngModel)]="searchQuery"
+      />
+    </div>
+
+    <div *ngIf="!loading && filteredProducts.length === 0" class="no-results">
+      <p>{{ 'PRODUCTS.NO_RESULTS_FOUND' | translate }}</p>
+    </div>
+
+    <div *ngIf="loading" class="loading-spinner">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+
+    <div *ngIf="products.length === 0 && !loading" class="no-results">
+      <p>{{ 'PRODUCTS.NO_PRODUCTS_AVAILABLE' | translate }}</p>
+    </div>
+
+    <div class="product-grid">
+      <div class="product-wrapper" *ngFor="let product of filteredProducts">
+        <div class="product-card">
+          <h5>{{ product.productName }}</h5>
+          <p><strong>{{ 'PRODUCTS.ASSET_CLASS' | translate }}:</strong> {{ product.assetClass }}</p>
+          <p><strong>{{ 'PRODUCTS.ANNUAL_RETURN' | translate }}:</strong> {{ product.annualReturn }}%</p>
+          <p>
+            <strong>{{ 'PRODUCTS.RISK_LEVEL' | translate }}:</strong>
+            <span
+              class="badge"
+              [ngClass]="{
+                'badge-low': product.riskLevel === ('PRODUCTS.RISK_LEVELS.LOW' | translate),
+                'badge-moderate': product.riskLevel === ('PRODUCTS.RISK_LEVELS.MODERATE' | translate),
+                'badge-high': product.riskLevel === ('PRODUCTS.RISK_LEVELS.HIGH' | translate)
+              }"
+            >
+              {{ product.riskLevel }}
+            </span>
+          </p>
+          <p><strong>{{ 'PRODUCTS.DESCRIPTION' | translate }}:</strong> {{ product.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

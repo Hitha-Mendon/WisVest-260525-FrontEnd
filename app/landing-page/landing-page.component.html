@@ -1,0 +1,127 @@
+<nav class="navbar navbar-expand-lg navbar-light px-4">
+  <a class="navbar-brand d-flex align-items-center">
+    <img [src]="logoPath" alt="{{ 'LANDING.LOGO_ALT' | translate }}" class="logo" />
+    {{ 'LANDING.BRAND_NAME' | translate }}
+  </a>
+  <div class="navbar-center">
+    <img [src]="workPath" alt="Work" class="work-img" />
+  </div>
+  <div class="ms-auto d-flex gap-3">
+    <a routerLink="/products" class="btn btn-outline-success btn-rounded" (click)="products()">
+      {{ 'LANDING.PRODUCTS' | translate }}
+    </a>
+    <a routerLink="/login" class="btn btn-rounded logout-btn d-flex align-items-center gap-2" (click)="logout()">
+      <i class="fas fa-sign-out-alt"></i>
+      <!-- {{ 'LANDING.LOGOUT' | translate }} -->
+    </a>
+  </div>
+</nav>
+ 
+<!-- Hero Section -->
+<section class="hero container-fluid py-5">
+  <div class="row align-items-center">
+    <!-- Left Side: Slogan and Button -->
+    <div class="col-md-6 px-5">
+      <h1 class="display-5 fw-bold">{{ 'LANDING.HERO_TITLE' | translate }}</h1>
+      <button class="btn btn-success btn-rounded" (click)="input()">
+        {{ 'LANDING.GET_STARTED' | translate }}
+      </button>
+    </div>
+ 
+    <!-- Right Side: Image -->
+    <div class="col-md-6 text-center">
+      <img [src]="heroPath" alt="{{ 'LANDING.HERO_IMAGE_ALT' | translate }}" class="img-fluid" />
+    </div>
+  </div>
+</section>
+<!-- ...existing code... -->
+
+<!-- Floating Chatbot Button
+<button class="chatbot-btn" (click)="showChatbot = !showChatbot" style="position:fixed;bottom:30px;right:30px;z-index:1100;">
+  <i class="fas fa-comments"></i> Chat
+</button>
+<app-chatbot *ngIf="showChatbot"></app-chatbot> -->
+ 
+<!-- Key Features Carousel -->
+<section class="feature-section text-center">
+  <h2 class="mb-4">{{ 'LANDING.KEY_FEATURES_TITLE' | translate }}</h2>
+  <div id="projectCarousel" class="carousel slide container" data-bs-ride="carousel" data-bs-interval="3000">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="feature-card">
+          <h5 class="card-title">{{ 'LANDING.FEATURE_1_TITLE' | translate }}</h5>
+          <p class="card-text">{{ 'LANDING.FEATURE_1_DESCRIPTION' | translate }}</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="feature-card">
+          <h5 class="card-title">{{ 'LANDING.FEATURE_2_TITLE' | translate }}</h5>
+          <p class="card-text">{{ 'LANDING.FEATURE_2_DESCRIPTION' | translate }}</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="feature-card">
+          <h5 class="card-title">{{ 'LANDING.FEATURE_3_TITLE' | translate }}</h5>
+          <p class="card-text">{{ 'LANDING.FEATURE_3_DESCRIPTION' | translate }}</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#projectCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">{{ 'LANDING.PREVIOUS' | translate }}</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#projectCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">{{ 'LANDING.NEXT' | translate }}</span>
+    </button>
+  </div>
+</section>
+<section class="news-section container mt-5">
+  <h2 class="text-center mb-4">Latest Financial News</h2>
+  <div class="row">
+    <div class="col-md-6 mb-4" *ngFor="let news of financialNews | slice:0:4">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">{{ news.headline }}</h5>
+          <p class="card-text">{{ news.summary }}</p>
+          <a [href]="news.url" target="_blank" class="btn btn-sm btn-outline-primary">Read more</a>
+          <p class="text-muted mt-2"><small>Source: {{ news.source }}</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- <section class="news-section container mt-5">
+  <h2 class="text-center mb-4">Latest Financial News</h2>
+  <div class="row">
+    <div class="col-md-6 mb-4" *ngFor="let news of financialNews | slice:0:4">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">{{ news.title }}</h5>
+          <p class="card-text">{{ news.description }}</p>
+          <a [href]="news.url" target="_blank" class="btn btn-sm btn-outline-primary">Read more</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+<!-- <section class="news-section container my-4">
+  <h3>Financial News</h3>
+  <div *ngIf="financialNews.length === 0">Loading news...</div>
+  <div *ngFor="let article of financialNews" class="card mb-3">
+    <div class="row g-0">
+      <div class="col-md-4" *ngIf="article.urlToImage">
+        <img [src]="article.urlToImage" class="img-fluid rounded-start" alt="{{ article.title }}" />
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">
+            <a [href]="article.url" target="_blank" rel="noopener noreferrer">{{ article.title }}</a>
+          </h5>
+          <p class="card-text">{{ article.description }}</p>
+          <p class="card-text"><small class="text-muted">{{ article.publishedAt | date:'medium' }}</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
